@@ -25,7 +25,7 @@ valid(Type, Doc) ->
     valid(Type, Doc, false).
 
 %% @doc Valida um documento com opção de modo estrito.
-%% Quando `Strict` é true, o número deve conter apenas dígitos.
+%% Quando 'Strict' é true, o número deve conter apenas dígitos.
 -spec valid(atom(), string(), boolean()) -> boolean().
 valid(cpf, CPFStr, Strict) ->
     case (Strict andalso not is_only_digits(CPFStr)) of
