@@ -1,0 +1,32 @@
+name: Run Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: Erlang Tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        otp: [25, 26]
+        rebar: [3.22.1]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Erlang/OTP
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{ matrix.otp }}
+          rebar3-version: ${{ matrix.rebar }}
+
+      - name: Compile project
+        run: rebar3 compile
+
+      - name: Run tests
+        run: rebar3 eunit
