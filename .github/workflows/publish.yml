@@ -1,0 +1,28 @@
+name: Publish to Hex
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    name: Publish package to Hex.pm
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Erlang/OTP
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: 26
+          rebar3-version: 3.22.1
+
+      - name: Write hex config with API key
+        run: |
+          mkdir -p ~/.config/rebar3
+          echo '{hex, [{api_key, <<"'${{ secrets.HEX_API_KEY }}'>>}]}.' > ~/.config/rebar3/rebar.config
+
+      - name: Publish package
+        run: rebar3 hex publish --yes
