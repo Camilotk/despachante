@@ -22,7 +22,7 @@ jobs:
       - name: Inject Hex API key
         run: |
           mkdir -p ~/.config/rebar3
-          printf '{hex, [{api_key, <<"%s">>}]}.\n' "${{ secrets.HEX_API_KEY }}" > ~/.config/rebar3/rebar.config
+          echo '{hex, [{api_key, <<"'${{ secrets.HEX_API_KEY }}'">>}]}.' > ~/.config/rebar3/rebar.config
 
       - name: Publish to Hex.pm
         run: rebar3 hex publish --yes
