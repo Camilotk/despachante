@@ -13,16 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Erlang/OTP
+      - name: Setup Erlang/OTP and Rebar3
         uses: erlef/setup-beam@v1
         with:
           otp-version: 26
           rebar3-version: 3.22.1
 
-      - name: Write hex config with API key
+      - name: Inject Hex API key
         run: |
           mkdir -p ~/.config/rebar3
-          echo '{hex, [{api_key, <<"'${{ secrets.HEX_API_KEY }}'>>}]}.' > ~/.config/rebar3/rebar.config
+          printf '{hex, [{api_key, <<"%s">>}]}.\n' "${{ secrets.HEX_API_KEY }}" > ~/.config/rebar3/rebar.config
 
-      - name: Publish package
+      - name: Publish to Hex.pm
         run: rebar3 hex publish --yes
