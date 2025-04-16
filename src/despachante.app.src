@@ -1,5 +1,5 @@
 {application, despachante, [
-    {description, "An OTP library"},
+    {description, "Library for validation, mock and generation of Brazilian documents"},
     {vsn, "0.1.0"},
     {registered, []},
     {applications, [
@@ -7,7 +7,9 @@
         stdlib
     ]},
     {env, []},
-    {modules, []},
+    {modules, [despachante]},
     {licenses, ["Apache-2.0"]},
-    {links, []}
- ]}.
+    {links, [
+        {"GitHub", "https://github.com/Camilotk/despachante"}
+    ]}
+]}.
