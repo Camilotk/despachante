@@ -1,4 +1,4 @@
-name: Publish to Hex.pm
+name: Release to Hex.pm
 
 on:
   release:
@@ -6,20 +6,32 @@ on:
 
 jobs:
   publish:
-    name: Publish to Hex
+    name: Publish to Hex.pm
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Erlang
+      - name: Setup Erlang/OTP
         uses: erlef/setup-beam@v1
         with:
           otp-version: 26
           rebar3-version: 3.22.1
 
-      - name: Publish with action-publish-hex
+      - name: Compile
+        run: rebar3 compile
+
+      - name: Generate Docs
+        run: rebar3 edoc
+
+      - name: Upload Docs
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs
+          path: ./doc
+
+      - name: Publish to Hex.pm
         uses: cucumber/action-publish-hex@v1.0.0
         with:
-          hex-api-token: ${{ secrets.HEX_API_KEY }}
-          working-directory: .
+          hex-api-token: ${{ secrets.HEX_API_TOKEN }}
