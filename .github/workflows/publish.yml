@@ -19,7 +19,7 @@ jobs:
           otp-version: 26
           rebar3-version: 3.22.1
 
-      - name: Decode hex.config
+      - name: Inject full hex.config
         run: |
           mkdir -p ~/.config/rebar3
           echo "${{ secrets.HEX_ENCODED_CONFIG }}" | base64 -d > ~/.config/rebar3/hex.config
