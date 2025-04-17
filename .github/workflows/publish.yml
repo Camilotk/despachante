@@ -19,10 +19,10 @@ jobs:
           otp-version: 26
           rebar3-version: 3.22.1
 
-      - name: Inject Hex API key
+      - name: Configure Hex API key
         run: |
           mkdir -p ~/.config/rebar3
-          echo '{hex, [{api_key, <<"'${{ secrets.HEX_API_KEY }}'">>}]}.' > ~/.config/rebar3/rebar.config
+          echo "{hex, [{api_key, <<\"${{ secrets.HEX_API_KEY }}\">>}]}." > ~/.config/rebar3/rebar.config
 
       - name: Publish to Hex.pm
         run: rebar3 hex publish --yes
