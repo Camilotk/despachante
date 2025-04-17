@@ -1,4 +1,4 @@
-name: Publish to Hex
+name: Publish to Hex.pm
 
 on:
   release:
@@ -6,24 +6,20 @@ on:
 
 jobs:
   publish:
-    name: Publish package to Hex.pm
+    name: Publish to Hex
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Erlang/OTP and Rebar3
+      - name: Setup Erlang
         uses: erlef/setup-beam@v1
         with:
           otp-version: 26
           rebar3-version: 3.22.1
 
-      - name: Inject full hex.config
-        run: |
-          mkdir -p ~/.config/rebar3
-          echo "${{ secrets.HEX_ENCODED_CONFIG }}" | base64 -d > ~/.config/rebar3/hex.config
-          rm -f ~/.config/rebar3/rebar.config
-
-      - name: Publish to Hex.pm
-        run: rebar3 hex publish --yes
+      - name: Publish with action-publish-hex
+        uses: cucumber/action-publish-hex@v1.0.0
+        with:
+          hex-api-token: ${{ secrets.HEX_API_KEY }}
+          working-directory: .
