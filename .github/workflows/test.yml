@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   pull_request:
+  release:
+    types: [published]
 
 jobs:
   test:
@@ -30,3 +32,7 @@ jobs:
 
       - name: Run tests
         run: rebar3 eunit
+
+      - name: Run Dialyzer
+        run: rebar3 dialyzer
+

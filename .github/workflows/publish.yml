@@ -8,6 +8,7 @@ jobs:
   publish:
     name: Publish package to Hex.pm
     runs-on: ubuntu-latest
+    needs: test
 
     steps:
       - name: Checkout code
@@ -23,3 +24,4 @@ jobs:
         uses: erlangpack/github-action@v3
         env:
           HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
+
