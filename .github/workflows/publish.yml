@@ -23,6 +23,7 @@ jobs:
         run: |
           mkdir -p ~/.config/rebar3
           echo "${{ secrets.HEX_ENCODED_CONFIG }}" | base64 -d > ~/.config/rebar3/hex.config
+          rm -f ~/.config/rebar3/rebar.config
 
       - name: Publish to Hex.pm
         run: rebar3 hex publish --yes
