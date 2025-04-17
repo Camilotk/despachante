@@ -9,6 +9,9 @@ jobs:
     name: Publish package to Hex.pm
     runs-on: ubuntu-latest
 
+    env:
+      HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -19,10 +22,13 @@ jobs:
           otp-version: 26
           rebar3-version: 3.22.1
 
-      - name: Configure Hex API key
+      - name: Authenticate Hex
         run: |
           mkdir -p ~/.config/rebar3
-          echo "{hex, [{api_key, <<\"${{ secrets.HEX_API_KEY }}\">>}]}." > ~/.config/rebar3/rebar.config
+          cat <<EOF > ~/.config/rebar3/hex.config
+#{<<"hexpm">> =>
+    #{api_key => <<"${HEX_API_KEY}">>}}.
+EOF
 
       - name: Publish to Hex.pm
         run: rebar3 hex publish --yes
