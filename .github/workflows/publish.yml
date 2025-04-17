@@ -18,6 +18,9 @@ jobs:
         with:
           otp-version: 26
           rebar3-version: 3.22.1
+      
+      - name: Debug rebar3 hex.config
+        run: cat ~/.config/rebar3/hex.config || echo "hex.config não encontrado"
 
       - name: Publish to Hex.pm
         uses: erlangpack/github-action@v3
