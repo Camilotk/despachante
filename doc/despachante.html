@@ -10,42 +10,35 @@
 <hr>
 
 <h1>Module despachante</h1>
-<ul class="index"><li><a href="#description">Description</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>  
-Módulo para validação de documentos brasileiros.
+<ul class="index"><li><a href="#description">Description</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>   
+Valida documentos brasileiros: CPF, CNPJ, PIS/PASEP, CNH, CNS e RENAVAM.
 
 
-<h2><a name="description">Description</a></h2><p>  
-Módulo para validação de documentos brasileiros.  
-Atualmente suporta validação de CPF com ou sem pontuação,  
-e modo estrito opcional.</p>
+<h2><a name="description">Description</a></h2><p>   
+Valida documentos brasileiros: CPF, CNPJ, PIS/PASEP, CNH, CNS e RENAVAM.</p>
  
-  <p>Exemplos:  
-&gt; despachante:valid(cpf, "825.205.780-25").  
-true</p>
- 
-  <p>&gt; despachante:valid(cpf, "82520578025", true).  
-true</p>
- 
-  &gt; despachante:valid(cpf, "825.205.780-25", true).
-  false
+   Exemplo:
+     valid(cpf, "123.456.789-09"),
+     valid(cnpj, "12.345.678/0001-95", true)
 <h2><a name="index">Function Index</a></h2>
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#valid-2">valid/2</a></td><td>Valida um documento com o modo flexível (pontuação opcional).</td></tr>
-<tr><td valign="top"><a href="#valid-3">valid/3</a></td><td>Valida um documento com modo estrito (sem pontuação).</td></tr>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#valid-2">valid/2</a></td><td>Verifica se um documento é válido.</td></tr>
+<tr><td valign="top"><a href="#valid-3">valid/3</a></td><td>Verifica se um documento é válido, com modo estrito opcional.</td></tr>
 </table>
 
 <h2><a name="functions">Function Details</a></h2>
 
 <h3 class="function"><a name="valid-2">valid/2</a></h3>
 <div class="spec">
-<p><code>valid(Type::atom(), Doc::string()) -&gt; boolean()</code><br></p>
+<p><code>valid(Type::atom(), Value::string()) -&gt; boolean()</code><br></p>
 <p> </p>
-</div><p>Valida um documento com o modo flexível (pontuação opcional).</p>
+</div><p>Verifica se um documento é válido.</p>
 
 <h3 class="function"><a name="valid-3">valid/3</a></h3>
 <div class="spec">
 <p><code>valid(X1::atom(), Doc::string(), Strict::boolean()) -&gt; boolean()</code><br></p>
 <p> </p>
-</div><p>Valida um documento com modo estrito (sem pontuação).</p>
+</div><p>Verifica se um documento é válido, com modo estrito opcional.
+  No modo estrito, somente são aceitos documentos que contenham apenas dígitos.</p>
 <hr>
 
 <div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>

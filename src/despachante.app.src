@@ -1,6 +1,6 @@
 {application, despachante, [
     {description, "Library for validation, mock and generation of Brazilian documents"},
-    {vsn, "0.1.2"},
+    {vsn, "0.2.0"},
     {registered, []},
     {applications, [
         kernel,
