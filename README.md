@@ -2,40 +2,43 @@
 
 **Validação de documentos brasileiros em Erlang.**
 
-O `despachante` é uma biblioteca criada para validar informações de documentos brasileiros como CPF, CNPJ, RG, PIS, entre outros — tudo isso de forma modular, extensível e escrita em Erlang puro.
+`despachante` é uma biblioteca Erlang para validação de documentos brasileiros como CPF, CNPJ, PIS/PASEP, CNH, CNS e RENAVAM.  
 
----
+## Documentos suportados
 
-## Propósito
+- `cpf` — Cadastro de Pessoa Física  
+- `cnpj` — Cadastro Nacional de Pessoa Jurídica  
+- `pis` — Programa de Integração Social / PASEP  
+- `cnh` — Carteira Nacional de Habilitação  
+- `cns` — Cartão Nacional de Saúde  
+- `renavam` — Registro Nacional de Veículos Automotores
 
-O Brasil tem muitos formatos e regras específicas pra documentos. O `despachante` quer resolver isso com uma base sólida, testável e simples de usar.
-
----
-
-## ✅ Documentos suportados
-
-- `cpf` — Validação com ou sem pontuação, modo estrito opcional
-
-> Mais formatos como `cnpj`, `rg`, `pis`, `cns` e `renavam` serão adicionados.
-
----
-
-## 🔍 Exemplo de uso
+## Exemplo de uso
 
 ```erlang
-%% modo flexível
+%% Validação flexível (com ou sem pontuação)
 despachante:valid(cpf, "825.205.780-25").
 
-%% modo estrito (somente números)
+%% Validação estrita (somente dígitos)
 despachante:valid(cpf, "82520578025", true).
 ```
 
----
+## Instalação
 
-## Roadmap
+Adicione `despachante` ao seu `rebar.config`:
 
-- [x] Validação de CPF
-- [ ] Validação de CNPJ
-- [ ] Mock de CPF/CNPJ válidos
-- [ ] Validação de PIS/PASEP
-- [ ] Normalização de entrada (com/sem máscara)
+```erlang
+{deps, [
+  {despachante, "0.2.0"}
+]}.
+```
+
+Ou, se estiver usando `mix` com o `rebar3_hex`, adicione ao seu `mix.exs`:
+
+```elixir
+def deps do
+  [
+    {:despachante, "~> 0.2.0"}
+  ]
+end
+```
