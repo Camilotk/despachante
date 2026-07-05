@@ -1,5 +1,14 @@
 # Despachante
 
+> [!WARNING]
+> **Projeto descontinuado**
+>
+> Esta biblioteca está sendo descontinuada em favor da nova biblioteca Erlang da organização **Brazilian Utils**:
+>
+> https://github.com/brazilian-utils/erlang
+>
+> Novas funcionalidades, melhorias e correções devem ser feitas na nova biblioteca. Para novos projetos, use `brutils` em vez de `despachante`.
+
 **Validação de documentos brasileiros em Erlang.**
 
 `despachante` é uma biblioteca Erlang para validação de documentos brasileiros como CPF, CNPJ, PIS/PASEP, CNH, CNS e RENAVAM.  
