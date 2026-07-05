@@ -1,0 +1,27 @@
+name: Retire Hex package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  retire:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Elixir/Hex
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: "26"
+          elixir-version: "1.16"
+
+      - name: Retire despachante releases
+        env:
+          HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
+        run: |
+          mix local.hex --force
+
+          mix hex.retire despachante 0.2.1 deprecated --message "Deprecated in favor of brutils: https://github.com/brazilian-utils/erlang"
+          mix hex.retire despachante 0.2.0 deprecated --message "Deprecated in favor of brutils: https://github.com/brazilian-utils/erlang"
+          mix hex.retire despachante 0.1.2 deprecated --message "Deprecated in favor of brutils: https://github.com/brazilian-utils/erlang"
+          mix hex.retire despachante 0.1.1 deprecated --message "Deprecated in favor of brutils: https://github.com/brazilian-utils/erlang"
+          mix hex.retire despachante 0.1.0 deprecated --message "Deprecated in favor of brutils: https://github.com/brazilian-utils/erlang"
